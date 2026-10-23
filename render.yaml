@@ -1,0 +1,18 @@
+services:
+  - type: worker
+    name: hermes-agent
+    runtime: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    dockerCommand: gateway run
+    autoDeploy: false
+    disk:
+      name: hermes-data
+      mountPath: /opt/data
+      sizeGB: 1
+    envVars:
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
